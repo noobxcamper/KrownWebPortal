@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid header-container px-5">
+    <!-- <h1> Dashboard </h1> -->
+
+    <div class="button-panel">
+        <form action="clear/">
+            {% csrf_token %}
+            <button class="icon-button" type="submit">
+                <img src="{% static 'img/delete-fill.svg' %}">
+                Clear
+            </button>
+        </form>
+        <button class="icon-button">
+            <img src="{% static 'img/download-fill.svg' %}">
+            Download List
+        </button>
+        <form action="refresh/">
+            {% csrf_token %}
+            <button class="icon-button">
+                <img src="{% static 'img/refresh-fill.svg' %}">
+                Refresh
+            </button>
+        </form>
+        <!-- <button class="icon-button"> 
+            <img src="{% static 'img/add-fill.svg' %}">
+            New Entry
+        </button> -->
+    </div>
+
+    <div class="table-responsive floating-panel">
+        <table class="table table align-middle">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">First Name</th>
+                    <th class="text-center" scope="col">Last Name</th>
+                    <th class="text-center" scope="col">Email</th>
+                    <th class="text-center" scope="col">Phone</th>
+                    <th class="text-center" scope="col">Address</th>
+                    <th class="text-center" scope="col">City</th>
+                    <th class="text-center" scope="col">Postal Code</th>
+                    <th class="text-center" scope="col">Year</th>
+                    <th class="text-center" scope="col">Make</th>
+                    <th class="text-center" scope="col">Model</th>
+                    <th class="text-center" scope="col">License Plate</th>
+                    <!-- <th scope="col">Remove</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% if customers %}
+                {% for customer in customers %}
+                <tr>
+                    <th class="text-center" scope="row">{{ forloop.counter }}</th>
+                    <td class="text-center" contenteditable="true">{{ customer.first_name }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.last_name }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.email }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.phone }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.address }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.city }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.postal_code }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.year }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.make }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.model }}</td>
+                    <td class="text-center" contenteditable="true">{{ customer.license_plate }}</td>
+                    <!-- <td>
+                            <button>
+                                remove
+                            </button>
+                        </td> -->
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

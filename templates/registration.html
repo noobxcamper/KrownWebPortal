@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <title>Registration</title>
+</head>
+
+<body>
+    <div class="container vh-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-10 col-lg-8 h-lg-75 card-stack">
+                <h1 style="margin: 20px 5px; text-align: center;">New Customer Registration</h1>
+                <hr>
+                <form id="reg-form" action="/" method="POST">
+                    {% csrf_token %}
+                    <div class="row py-4 mx-2">
+                        <div class="col">
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name*" required
+                                maxlength="30" tabindex="1">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address"
+                                maxlength="30" tabindex="3">
+                            <input type="text" class="form-control" name="address" placeholder="Address*" required
+                                maxlength="30" tabindex="5">
+                            <input type="text" class="form-control" name="postal_code" placeholder="Postal Code*"
+                                required maxlength="6" tabindex="7">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required
+                                maxlength="30" tabindex="2">
+                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number*" required
+                                maxlength="10" tabindex="4">
+                            <input type="text" class="form-control" name="city" placeholder="City*" required
+                                maxlength="30" tabindex="6">
+                        </div>
+                    </div>
+                    <div class="row py-4 mx-2">
+                        <div class="col">
+                            <input type="number" class="form-control" name="year" placeholder="Vehicle Year*" required
+                                maxlength="4" tabindex="7">
+                            <input type="text" class="form-control" name="model" placeholder="Vehicle Model*" required
+                                maxlength="30" tabindex="9">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="make" placeholder="Vehicle Make*" required
+                                maxlength="30" tabindex="8">
+                            <input type="text" class="form-control" name="license_plate" placeholder="License Plate"
+                                maxlength="8" tabindex="10">
+                        </div>
+                    </div>
+
+                    <div class="row mt-5 mx-2">
+                        <div class="col">
+                            <button style="margin-bottom: 40px;" tabindex="11">Submit</button>
+                            <p class="footer">Krown Web Portal V1.0</p>
+                        </div>
+                    </div>
+
+                    <svg class="checkmark" id="checkmark-animation" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 52 52" hidden>
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector("form")
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let anim = document.getElementById('checkmark-animation');
+            anim.removeAttribute('hidden');
+
+            setTimeout(() => {
+                document.location.reload(true);
+            }, 3000);
+        });
+    </script>
+
+</body>
+
+</html>
