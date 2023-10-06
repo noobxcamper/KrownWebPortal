@@ -27,9 +27,16 @@ SECRET_KEY = 'django-insecure-!0836bxot*mjaryczea=%h7peon2m3@&3y&#(986wn_%g6*$*p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.50.232', '127.0.0.1', '99.233.19.101']
+ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = 'users/login'
+
+if DEBUG:
+    STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),    
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Application definition
 
@@ -78,16 +85,16 @@ WSGI_APPLICATION = 'KrownPortal.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'no-longer-in-use': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'default': {
+    'mysql': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'krowncustomers',
-        'USER': 'hazem',
-        'PASSWORD': 'aceflooder12',
-        'HOST': 'localhost',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '3306',
     }
 }
@@ -130,10 +137,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),    
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

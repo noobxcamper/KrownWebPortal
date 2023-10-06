@@ -61,7 +61,7 @@
 
                     <div class="row mt-5 mx-2">
                         <div class="col">
-                            <button style="margin-bottom: 40px;" tabindex="11">Submit</button>
+                            <button type="submit" style="margin-bottom: 40px;" tabindex="11">Submit</button>
                             <p class="footer">Krown Web Portal V1.0</p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
             anim.removeAttribute('hidden');
 
             setTimeout(() => {
-                document.location.reload(true);
+                form.submit();
             }, 3000);
         });
     </script>
