@@ -45,30 +45,24 @@
                     <th class="text-center" scope="col">Make</th>
                     <th class="text-center" scope="col">Model</th>
                     <th class="text-center" scope="col">License Plate</th>
-                    <!-- <th scope="col">Remove</th> -->
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="dashboard-table">
                 {% if customers %}
                 {% for customer in customers %}
                 <tr>
-                    <th class="text-center" scope="row">{{ forloop.counter }}</th>
-                    <td class="text-center" contenteditable="true">{{ customer.first_name }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.last_name }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.email }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.phone }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.address }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.city }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.postal_code }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.year }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.make }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.model }}</td>
-                    <td class="text-center" contenteditable="true">{{ customer.license_plate }}</td>
-                    <!-- <td>
-                            <button>
-                                remove
-                            </button>
-                        </td> -->
+                    <td class="text-center" scope="row">{{ forloop.counter }}</th>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.first_name }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.last_name }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.email }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.phone }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.address }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.city }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.postal_code }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.year }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.make }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.model }}</td>
+                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.license_plate }}</td>
                 </tr>
                 {% endfor %}
                 {% endif %}
@@ -76,4 +70,17 @@
         </table>
     </div>
 </div>
+
+<input type="text" id="hidden-text" style="z-index: -1 !important; position: relative;">
+
+<script>
+    function copy_to_clipboard(el) {
+        const hiddenText = document.getElementById('hidden-text');
+        hiddenText.value = el.innerText;
+        hiddenText.select();
+
+        // Copy the text inside the text field
+        document.execCommand('copy');
+    }
+</script>
 {% endblock %}
