@@ -15,10 +15,10 @@ print("========================\n")
 
 print("[+] Before Setup Checklist")
 print("1). STATIC_ROOT variable present in settings.py")
-print("2). Ran the 'manage.py collectstatic' command\n")
+print("2). Ran the 'manage.py collectstatic' command")
 print("3). DEBUG set to False")
 print("4). ALLOWED_HOSTS contains the server's IP address or the wildcard (*)\n")
-print("Failing to perform these steps may result in your site's CSS not functioning properly!\n")
+print("Failing to perform these steps may result in your site not functioning properly!\n")
 
 
 setup_file = input("Please enter the path to the setup file: ")
