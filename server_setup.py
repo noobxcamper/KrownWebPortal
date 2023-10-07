@@ -13,6 +13,14 @@ print("\n========================")
 print("Django Deployment Setup")
 print("========================\n")
 
+print("[+] Before Setup Checklist")
+print("1). STATIC_ROOT variable present in settings.py")
+print("2). Ran the 'manage.py collectstatic' command\n")
+print("3). DEBUG set to False")
+print("4). ALLOWED_HOSTS contains the server's IP address or the wildcard (*)\n")
+print("Failing to perform these steps may result in your site's CSS not functioning properly!\n")
+
+
 setup_file = input("Please enter the path to the setup file: ")
 
 # reading and parsing file #
@@ -162,16 +170,8 @@ run_command(['systemctl', 'restart', 'nginx'])
 
 print("Restarted nginx service.\n")
 
+run_command(['gpawsswd', '-a', 'www-data', default_user])
+run_command(['-u', 'www-data', 'stat', project_dir])
+
 print("[+] Setup complete")
 print("The setup has been completed, you can find your website at http://" + server_ip + ":" + server_port)
-print("If you do not see your website, please follow the setps below.\n")
-
-print("[+] After Setup Checklist")
-print("[ ] STATIC_ROOT variable present in settings.py")
-print("[ ] DEBUG set to False")
-print("[ ] ALLOWED_HOSTS contains the server's IP address or the wildcard (*)")
-print("[ ] Ran the 'manage.py collectstatic' command\n")
-
-print("[+] Additional required commands")
-print("sudo gpasswd -a www-data <username used in setup>")
-print("sudo -u www-data stat <project-directory>/static")
