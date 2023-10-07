@@ -1,0 +1,6 @@
+DJANGO_INSTALL=True
+GUNICORN_INSTALL=True
+NGINX_INSTALL=True
+DEFAULT_USER=hazem
+DJANGO_PROJECT_DIR=/home/hazem/Desktop/django_project
+DJANGO_WSGI_DIR=/home/hazem/Desktop/django_project/django_project/wsgi.py
