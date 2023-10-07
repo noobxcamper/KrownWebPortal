@@ -85,7 +85,7 @@ else:
 
 # Setting up Gunicorn #
 print("[+] Setting up gunicorn\n")
-gunicorn_proceed = input("This script will override any previously made files and/or directories. Do you wish to proceed? [Y/N]: ").upper()
+gunicorn_proceed = input("This script will overwrite any previously made files and/or directories. Do you wish to proceed? [Y/N]: ").upper()
 
 if gunicorn_proceed == 'N':
     print("[+] Stopping deployment")
@@ -170,7 +170,7 @@ run_command(['systemctl', 'restart', 'nginx'])
 
 print("Restarted nginx service.\n")
 
-run_command(['gpawsswd', '-a', 'www-data', default_user])
+run_command(['gpasswd', '-a', 'www-data', default_user])
 run_command(['-u', 'www-data', 'stat', project_dir])
 
 print("[+] Setup complete")
