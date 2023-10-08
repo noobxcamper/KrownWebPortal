@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-LOGIN_URL = 'acconts/login'
+LOGIN_URL = 'accounts/login'
 
 if DEBUG:
     STATICFILES_DIRS = [
