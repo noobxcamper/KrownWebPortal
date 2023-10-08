@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-from . import google_secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,7 +22,7 @@ TEMPLATE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!0836bxot*mjaryczea=%h7peon2m3@&3y&#(986wn_%g6*$*p'
-GOOGLE_API_KEY = google_secrets.get_secret('GOOGLE_PLACES_API')
+GOOGLE_API_KEY = 'AIzaSyDGfmx9_5ofF4EtV8KwcmfvS5kGZHzzrdM'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
