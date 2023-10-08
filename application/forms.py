@@ -12,3 +12,7 @@ class RegistrationForm(forms.Form):
     make = forms.CharField(max_length=30)
     model = forms.CharField(max_length=30)
     license_plate = forms.CharField(max_length=8)
+
+class sign_in_form(forms.Form):
+    username = forms.CharField(max_length=30)
+    password = forms.PasswordInput()

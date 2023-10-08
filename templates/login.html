@@ -2,27 +2,53 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
-        <title>Login</title>
-    </head>
-    <body>
-        <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-            <form action="" method="POST">
-                {% csrf_token %}
-                <img src="{% static 'img/krown-logo-full.png' %}" height="100" alt="krown-logo">
-                <br><br><br><br>
-                <div class="mb-3">
-                  <input type="text" class="form-control" name="username" placeholder="Username">
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/71bdd4ccb1.js" crossorigin="anonymous"></script>
+
+    <title>SIGN IN</title>
+</head>
+
+<body>
+    <section class="vh-100">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="floating-panel">
+                        <div class="p-5 text-center">
+                            <h3 class="my-2" style="font-size: 24px;">SIGN IN TO YOUR ACCOUNT</h3>
+                            <hr class="my-4">
+                            <form action="" method="POST" >
+                                {% csrf_token %}
+                                <div class="my-3 d-flex align-items-center input-div">
+                                    <i class="fa-solid fa-user fa-sm"></i>
+                                    <input type="text" name="username" placeholder="Username" onkeypress="return ignoreSpace(event)">
+                                </div>
+                                <div class="my-3 d-flex align-items-center input-div"">
+                                    <i class="fa-solid fa-lock fa-sm"></i>
+                                    <input type="password" name="password" placeholder="Password">
+                                </div>
+                                <button class="my-2" type="submit">SIGN IN</button>
+                            </form>
+
+                            <a class="mini-link" href="#">Forgot your password?</a>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                  <input type="password" class="form-control" name="password" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-              </form>
+            </div>
         </div>
-    </body>
+    </section>
+    <script>
+        function ignoreSpace(event) {
+            var char = event ? event.which : window.event.keyCode;
+            if(char == 32) return false;
+        }
+    </script>
+</body>
 </html>

@@ -19,10 +19,10 @@ from application import views
 
 urlpatterns = [
     path('', views.dashboard), 
-    path('admin/', admin.site.urls),
-    path('registration/', views.registration),
-    path('users/login/', views.login_page),
-    path('users/logout/', views.logout_page),
-    path('clear/', views.clear_table),
-    path('refresh/', views.refresh_table)
+    path('admin', admin.site.urls),
+    path('registration', views.registration),
+    path('accounts/login', views.login_page),
+    path('accounts/logout', views.logout_page),
+    path('clear', views.clear_table),
+    path('refresh', views.refresh_table)
 ]

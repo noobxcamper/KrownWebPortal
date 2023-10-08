@@ -171,6 +171,7 @@ run_command(['systemctl', 'restart', 'nginx'])
 print("Restarted nginx service.\n")
 
 run_command(['gpasswd', '-a', 'www-data', default_user])
+run_command(['sudo', '-u', 'www-data', 'stat', project_dir])
 
 print("[+] Setup complete")
 print("The setup has been completed, you can find your website at http://" + server_ip + ":" + server_port)

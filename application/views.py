@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 from application.models import Customer
-from application.forms import RegistrationForm
+from application.forms import RegistrationForm, sign_in_form
 
 # Create your views here.
 
@@ -72,7 +72,10 @@ def login_page(request):
             print("Wrong password")
             return HttpResponseRedirect(reverse(login_page))
     else:
-        return render(request, 'login.html')
+        ctx = {
+            "signin_form": sign_in_form()
+        }
+        return render(request, 'login.html', context=ctx)
     
 def is_user_active(user):
     return user.is_active

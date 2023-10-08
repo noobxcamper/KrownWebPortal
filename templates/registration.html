@@ -24,45 +24,34 @@
                 <hr>
                 <form action="/" method="POST">
                     {% csrf_token %}
-                    <div class="row py-4 mx-2">
+                    <div class="row mx-2">
                         <div class="col">
-                            <input type="text" class="form-control" name="first_name" placeholder="First Name*" required
-                                maxlength="30" tabindex="1">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address"
-                                maxlength="30" tabindex="3">
-                            <input type="text" class="form-control" name="address" placeholder="Address*" required
-                                maxlength="30" tabindex="5">
-                            <input type="text" class="form-control" name="postal_code" placeholder="Postal Code*"
-                                required maxlength="6" tabindex="7">
+                            <input type="text" class="form-control" name="first_name" placeholder="First Name*" required maxlength="30" tabindex="1">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address" maxlength="30" tabindex="3" onkeypress="return ignoreSpace(event)">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required
-                                maxlength="30" tabindex="2">
-                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number*" required
-                                maxlength="10" tabindex="4">
-                            <input type="text" class="form-control" name="city" placeholder="City*" required
-                                maxlength="30" tabindex="6">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required maxlength="30" tabindex="2">
+                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number*" required maxlength="10" tabindex="4">
                         </div>
                     </div>
-                    <div class="row py-4 mx-2">
+                    <div class="row mx-2">
                         <div class="col">
-                            <input type="number" class="form-control" name="year" placeholder="Vehicle Year*" required
-                                maxlength="4" tabindex="7">
-                            <input type="text" class="form-control" name="model" placeholder="Vehicle Model*" required
-                                maxlength="30" tabindex="9">
+                            <input type="text" class="form-control" name="address" placeholder="Address*" required maxlength="30" tabindex="5">
+                        </div>
+                    </div>
+                    <div class="row mx-2">
+                        <div class="col">
+                            <input type="text" class="form-control" name="make" placeholder="Vehicle Make*" required maxlength="30" tabindex="8">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="make" placeholder="Vehicle Make*" required
-                                maxlength="30" tabindex="8">
-                            <input type="text" class="form-control" name="license_plate" placeholder="License Plate"
-                                maxlength="8" tabindex="10">
+                            <input type="text" class="form-control" name="model" placeholder="Vehicle Model*" required maxlength="30" tabindex="9">
                         </div>
                     </div>
 
                     <div class="row mt-5 mx-2">
                         <div class="col">
                             <button type="submit" style="margin-bottom: 40px;" tabindex="11">Submit</button>
-                            <p class="footer">Krown Web Portal V1.0</p>
+                            <!-- <p class="footer">Krown Web Portal V1.0</p> -->
                         </div>
                     </div>
 
@@ -87,8 +76,11 @@
                 form.submit();
             }, 3000);
         });
+
+        function ignoreSpace(event) {
+        var char = event ? event.which : window.event.keyCode;
+        if(char == 32) return false;
+    }
     </script>
-
 </body>
-
 </html>
