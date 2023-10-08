@@ -12,6 +12,10 @@
 
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script type="text/javascript">
+        var google_api_key = "{{google_api_key|safe}}";
+    </script>
+    <script src="{% static 'js/google_places.js' %}"></script>
 
     <title>Registration</title>
 </head>
@@ -22,36 +26,36 @@
             <div class="col-10 col-lg-8 h-lg-75 card-stack">
                 <h1 style="margin: 20px 5px; text-align: center;">New Customer Registration</h1>
                 <hr>
-                <form action="/" method="POST">
+                <form action="/" method="POST" autocomplete="off">
                     {% csrf_token %}
                     <div class="row mx-2">
                         <div class="col">
-                            <input type="text" class="form-control" name="first_name" placeholder="First Name*" required maxlength="30" tabindex="1">
-                            <input type="email" class="form-control" name="email" placeholder="Email Address" maxlength="30" tabindex="3" onkeypress="return ignoreSpace(event)">
+                            <input type="text" class="form-control no-spaces" name="first_name" placeholder="First Name*" required maxlength="30" tabindex="1" autocapitalize="words">
+                            <input type="email" class="form-control no-spaces" name="email" placeholder="Email Address" maxlength="30" tabindex="3">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required maxlength="30" tabindex="2">
-                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number*" required maxlength="10" tabindex="4">
-                        </div>
-                    </div>
-                    <div class="row mx-2">
-                        <div class="col">
-                            <input type="text" class="form-control" name="address" placeholder="Address*" required maxlength="30" tabindex="5">
+                            <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required maxlength="30" tabindex="2" autocapitalize="words">
+                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number*" required maxlength="10" tabindex="4" >
                         </div>
                     </div>
                     <div class="row mx-2">
                         <div class="col">
-                            <input type="text" class="form-control" name="make" placeholder="Vehicle Make*" required maxlength="30" tabindex="8">
+                            <input id="places-autocomplete" type="text" class="form-control" name="address" placeholder="Address*" required maxlength="30" tabindex="5">
+                            <input id="postal-code" type="text" class="form-control" name="address" placeholder="Postal Code*" required maxlength="30" tabindex="5">
+                        </div>
+                    </div>
+                    <div class="row mx-2">
+                        <div class="col">
+                            <input type="text" class="form-control" name="make" placeholder="Vehicle Make*" required maxlength="30" tabindex="8" autocapitalize="words">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="model" placeholder="Vehicle Model*" required maxlength="30" tabindex="9">
+                            <input type="text" class="form-control" name="model" placeholder="Vehicle Model*" required maxlength="30" tabindex="9" autocapitalize="words">
                         </div>
                     </div>
 
                     <div class="row mt-5 mx-2">
                         <div class="col">
                             <button type="submit" style="margin-bottom: 40px;" tabindex="11">Submit</button>
-                            <!-- <p class="footer">Krown Web Portal V1.0</p> -->
                         </div>
                     </div>
 
@@ -77,10 +81,12 @@
             }, 3000);
         });
 
-        function ignoreSpace(event) {
-        var char = event ? event.which : window.event.keyCode;
-        if(char == 32) return false;
-    }
+        $(".no-spaces").on("input click", function(){
+            var inputValue = $(this).val();
+
+            $(this).val(inputValue.replace(/\s/, ''));
+        })
+
     </script>
 </body>
 </html>

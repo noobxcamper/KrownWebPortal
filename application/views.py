@@ -6,10 +6,11 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden
 
 from application.models import Customer
 from application.forms import RegistrationForm, sign_in_form
+from KrownPortal.settings import GOOGLE_API_KEY
 
 # Create your views here.
 
-@login_required(redirect_field_name=None)
+@login_required(login_url='/accounts/login', redirect_field_name=None)
 def dashboard(request):
     if request.method == 'GET':
         if (request.user.groups.filter(name="Staff").exists()):
@@ -48,10 +49,9 @@ def clear_table(request):
 def refresh_table(request):
     return redirect('/')
 
-@login_required(redirect_field_name=None)
+@login_required(login_url='/accounts/login', redirect_field_name=None)
 def registration(request):
-    form = RegistrationForm()
-    return render(request, 'registration.html', {"form":form})
+    return render(request, 'registration.html', {"google_api_key":GOOGLE_API_KEY})
     
 def login_page(request):
     if request.method == "POST":
@@ -80,7 +80,7 @@ def login_page(request):
 def is_user_active(user):
     return user.is_active
 
-@login_required(redirect_field_name=None)
+@login_required(login_url='/accounts/login', redirect_field_name=None)
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect(reverse(login_page))
