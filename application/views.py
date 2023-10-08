@@ -9,7 +9,7 @@ from application.forms import RegistrationForm, sign_in_form
 
 # Create your views here.
 
-@login_required
+@login_required(redirect_field_name=None)
 def dashboard(request):
     if request.method == 'GET':
         if (request.user.groups.filter(name="Staff").exists()):
@@ -48,7 +48,7 @@ def clear_table(request):
 def refresh_table(request):
     return redirect('/')
 
-@login_required
+@login_required(redirect_field_name=None)
 def registration(request):
     form = RegistrationForm()
     return render(request, 'registration.html', {"form":form})
@@ -80,7 +80,7 @@ def login_page(request):
 def is_user_active(user):
     return user.is_active
 
-@login_required
+@login_required(redirect_field_name=None)
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect(reverse(login_page))
