@@ -267,7 +267,8 @@ form.addEventListener("submit", (e) => {
                 }, 2000);
             }
         });
-    } else {
-        alert("Invalid form fields!");
-    }
+    } 
+    // else {
+    //     alert("Invalid form fields!");
+    // }
 });
