@@ -23,14 +23,14 @@
                         <div class="p-5 text-center">
                             <h3 class="my-2" style="font-size: 24px;">SIGN IN TO YOUR ACCOUNT</h3>
                             <hr class="my-4">
-                            <form action="" method="POST" >
+                            <form method="POST">
                                 {% csrf_token %}
                                 <div class="my-3 d-flex align-items-center input-div">
                                     <i class="fa-solid fa-user fa-sm"></i>
-                                    <input type="text" name="username" placeholder="Username" onkeypress="return ignoreSpace(event)">
+                                    <input type="text" name="username" placeholder="Username">
                                 </div>
-                                <div class="my-3 d-flex align-items-center input-div"">
-                                    <i class="fa-solid fa-lock fa-sm"></i>
+                                <div class="my-3 d-flex align-items-center input-div">
+                                    <i class=" fa-solid fa-lock fa-sm"></i>
                                     <input type="password" name="password" placeholder="Password">
                                 </div>
                                 <button class="my-2" type="submit">SIGN IN</button>
@@ -44,11 +44,6 @@
             </div>
         </div>
     </section>
-    <script>
-        function ignoreSpace(event) {
-            var char = event ? event.which : window.event.keyCode;
-            if(char == 32) return false;
-        }
-    </script>
 </body>
+
 </html>
