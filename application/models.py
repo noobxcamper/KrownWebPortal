@@ -4,14 +4,12 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Customer(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
-    phone = models.CharField(max_length=10)
-    address = models.CharField(max_length=30)
-    city = models.CharField(max_length=30, default='mississauga')
-    postal_code = models.CharField(max_length=4)
-    year = models.CharField(max_length=4)
-    make = models.CharField(max_length=30)
-    model = models.CharField(max_length=30)
-    license_plate = models.CharField(max_length=8)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=14)
+    address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100, default='mississauga')
+    postal_code = models.CharField(max_length=100)
+    make = models.CharField(max_length=100)
+    model = models.CharField(max_length=100)

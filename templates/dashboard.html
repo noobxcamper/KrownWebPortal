@@ -39,10 +39,8 @@
                     <th class="text-center" scope="col">Address</th>
                     <th class="text-center" scope="col">City</th>
                     <th class="text-center" scope="col">Postal Code</th>
-                    <th class="text-center" scope="col">Year</th>
                     <th class="text-center" scope="col">Make</th>
                     <th class="text-center" scope="col">Model</th>
-                    <th class="text-center" scope="col">License Plate</th>
                 </tr>
             </thead>
             <tbody id="dashboard-table">
@@ -57,10 +55,8 @@
                     <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.address }}</td>
                     <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.city }}</td>
                     <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.postal_code }}</td>
-                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.year }}</td>
                     <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.make }}</td>
                     <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.model }}</td>
-                    <td class="text-center" contenteditable="false" onclick="copy_to_clipboard(this)">{{ customer.license_plate }}</td>
                 </tr>
                 {% endfor %}
                 {% endif %}

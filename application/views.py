@@ -2,15 +2,18 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import HttpResponseRedirect
+# from django.views.decorators.csrf import csrf_exempt
 
 from application.models import Customer
 from application.forms import RegistrationForm, sign_in_form
 from KrownPortal.settings import GOOGLE_API_KEY
+from . import utilities
 
 # Create your views here.
 
 @login_required(login_url='/accounts/login', redirect_field_name=None)
+# @csrf_exempt
 def dashboard(request):
     if request.method == 'GET':
         if (request.user.groups.filter(name="Staff").exists()):
@@ -23,22 +26,23 @@ def dashboard(request):
     
     if request.method == 'POST':
         print(request.body)
+
+        address = utilities.split_address(request.POST['address'])
+
+        if len(address) < 5:
+            return redirect('registration/')
+
         customer = Customer()
         customer.first_name = request.POST['first_name'].upper()
         customer.last_name = request.POST['last_name'].upper()
         customer.email = request.POST['email']
         customer.phone = request.POST['phone']
-        customer.address = request.POST['address']
-        customer.city = request.POST['city']
-        customer.postal_code = request.POST['postal_code'].upper()
-        customer.year = request.POST['year']
+        customer.address = address[0].strip()
+        customer.city = address[1].strip()
+        customer.postal_code = address[4].strip()
         customer.make = request.POST['make'].upper()
         customer.model = request.POST['model'].upper()
-        customer.license_plate = request.POST['license_plate'].upper()
-
         customer.save()
-
-        print("saved")
 
         return redirect('registration/')
     

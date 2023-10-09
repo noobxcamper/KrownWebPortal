@@ -31,12 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = 'accounts/login'
 
-if DEBUG:
-    STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),    
-    ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Application definition
 

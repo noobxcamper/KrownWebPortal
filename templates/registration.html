@@ -26,36 +26,90 @@
             <div class="col-10 col-lg-8 h-lg-75 card-stack">
                 <h1 style="margin: 20px 5px; text-align: center;">New Customer Registration</h1>
                 <hr>
-                <form action="/" method="POST" autocomplete="off">
+                <form class="needs-validation" method="POST">
                     {% csrf_token %}
-                    <div class="row mx-2">
+                    <div class="row m-2 gx-2">
                         <div class="col">
-                            <input type="text" class="form-control no-spaces" name="first_name" placeholder="First Name*" required maxlength="30" tabindex="1" autocapitalize="words">
-                            <input type="email" class="form-control no-spaces" name="email" placeholder="Email Address" maxlength="30" tabindex="3">
+                            <div class="form-floating">
+                                <input id="first_name" type="text" class="form-control" name="first_name"
+                                    placeholder="Required" maxlength="30" tabindex="1" autocapitalize="words"
+                                    autocomplete="do-not-autofill" required>
+                                <label for="first_name">First Name</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid first name</div>
+                            </div>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="last_name" placeholder="Last Name*" required maxlength="30" tabindex="2" autocapitalize="words">
-                            <input type="tel" class="form-control" name="phone" placeholder="Phone Number*" required maxlength="10" tabindex="4" >
+                            <div class="form-floating">
+                                <input id="last_name" type="text" class="form-control" name="last_name"
+                                    placeholder="Required" maxlength="30" tabindex="1" autocapitalize="words"
+                                    autocomplete="do-not-autofill" required>
+                                <label for="last_name">Last Name</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid last name</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mx-2">
+
+                    <div class="row m-2 gx-2">
                         <div class="col">
-                            <input id="places-autocomplete" type="text" class="form-control" name="address" placeholder="Address*" required maxlength="30" tabindex="5">
-                            <input id="postal-code" type="text" class="form-control" name="address" placeholder="Postal Code*" required maxlength="30" tabindex="5">
+                            <div class="form-floating">
+                                <input id="email" type="text" class="form-control" name="email" placeholder="Optional"
+                                    maxlength="30" tabindex="1" autocapitalize="words" autocomplete="do-not-autofill">
+                                <label for="email">Email (Optional)</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid email</div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="phone" type="tel" class="form-control" name="phone" placeholder="Required"
+                                    maxlength="14" tabindex="4" autocomplete="do-not-autofill"
+                                    onkeydown="phoneNumberFormatter()" required>
+                                <label for="phone">Phone</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid phone number</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row mx-2">
+
+                    <div class="row m-2 gx-2">
                         <div class="col">
-                            <input type="text" class="form-control" name="make" placeholder="Vehicle Make*" required maxlength="30" tabindex="8" autocapitalize="words">
+                            <div class="form-floating">
+                                <input id="places-autocomplete" type="text" class="form-control" name="address"
+                                    placeholder="Required" tabindex="5" autocomplete="do-not-autofill" required>
+                                <label for="places-autocomplete">Address</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid address</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mx-2 gx-2">
+                        <div class="col">
+                            <div class="form-floating">
+                                <input id="make" type="text" class="form-control" name="make" placeholder="Required"
+                                    maxlength="30" tabindex="6" autocapitalize="words" autocomplete="do-not-autofill"
+                                    required>
+                                <label for="make">Make</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid make</div>
+                            </div>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="model" placeholder="Vehicle Model*" required maxlength="30" tabindex="9" autocapitalize="words">
+                            <div class="form-floating">
+                                <input id="model" type="text" class="form-control" name="model" placeholder="Required"
+                                    maxlength="30" tabindex="7" autocapitalize="words" autocomplete="do-not-autofill"
+                                    required>
+                                <label for="model">Model</label>
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">Please enter a valid model</div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mt-5 mx-2">
                         <div class="col">
-                            <button type="submit" style="margin-bottom: 40px;" tabindex="11">Submit</button>
+                            <button type="submit" style="margin-bottom: 40px;" tabindex="8">Submit</button>
                         </div>
                     </div>
 
@@ -70,23 +124,202 @@
     </div>
 
     <script>
+        function validateNames() {
+            fName = document.getElementById("first_name");
+            lName = document.getElementById("last_name");
+
+            fName.addEventListener("focusout", (e) => {
+                if (/^([a-zA-Z/\s/]*)$/.test(fName.value)) {
+                    fName.value = fName.value.trim();
+                    fName.classList.add("is-valid");
+                    fName.classList.remove("is-invalid");
+                } else {
+                    fName.classList.add("is-invalid");
+                    fName.classList.remove("is-valid");
+                }
+
+                if (fName.value == "") {
+                    fName.classList.remove("is-valid");
+                    fName.classList.add("is-invalid");
+                }
+            });
+
+            lName.addEventListener("focusout", (e) => {
+                if (/^([a-zA-Z/\s/]*)$/.test(lName.value)) {
+                    lName.value = lName.value.trim();
+                    lName.classList.add("is-valid");
+                    lName.classList.remove("is-invalid");
+                } else {
+                    lName.classList.add("is-invalid");
+                    lName.classList.remove("is-valid");
+                }
+
+                if (lName.value == "") {
+                    lName.classList.remove("is-valid");
+                    lName.classList.add("is-invalid");
+                }
+            });
+        }
+        function validateEmail() {
+            var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            email.addEventListener("focusout", (e) => {
+                if (emailRegex.test(email.value)) {
+                    email.value = email.value.trim();
+                    email.classList.add("is-valid");
+                    email.classList.remove("is-invalid");
+                } else {
+                    email.classList.add("is-invalid");
+                    email.classList.remove("is-valid");
+                }
+
+                if (email.value == "") {
+                    email.classList.remove("is-valid");
+                    email.classList.remove("is-invalid");
+                }
+            });
+        }
+        function validateAddress() {
+            addr = document.getElementById("places-autocomplete");
+
+            addr.addEventListener("focusout", (e) => {
+                if (/^(\s*)$/.test(addr.value)) {
+                    addr.classList.add("is-invalid");
+                    addr.classList.remove("is-valid");
+                } else {
+                    addr.value = addr.value.trim();
+                    addr.classList.add("is-valid");
+                    addr.classList.remove("is-invalid");
+                }
+
+                if (addr.value === "") {
+                    addr.classList.remove("is-valid");
+                    addr.classList.add("is-invalid");
+                }
+            });
+        }
+        function validatePhone() {
+            phone.addEventListener("focusout", (e) => {
+                if (/^(\([0-9]{3}\)\s{1}[0-9]{3}\-[0-9]{4})$/.test(phone.value)) {
+                    phone.classList.add("is-valid");
+                    phone.classList.remove("is-invalid");
+                } else {
+                    phone.classList.add("is-invalid");
+                    phone.classList.remove("is-valid");
+                }
+
+                if (phone.value == "") {
+                    phone.classList.remove("is-valid");
+                    phone.classList.add("is-invalid");
+                }
+            });
+        }
+        function validateMakeAndModel() {
+            make.addEventListener("focusout", (e) => {
+                if (/^(\s*)$/.test(make.value)) {
+                    make.classList.add("is-invalid");
+                    make.classList.remove("is-valid");
+                } else {
+                    make.value = make.value.trim();
+                    make.classList.add("is-valid");
+                    make.classList.remove("is-invalid");
+                }
+            });
+
+            model.addEventListener("focusout", (e) => {
+                if (/^(\s*)$/.test(model.value)) {
+                    model.classList.add("is-invalid");
+                    model.classList.remove("is-valid");
+                } else {
+                    model.value = model.value.trim();
+                    model.classList.add("is-valid");
+                    model.classList.remove("is-invalid");
+                }
+            });
+        }
+        function formatPhoneNumber(value) {
+            // if input value is falsy eg if the user deletes the input, then just return
+            if (!value) return value;
+
+            // clean the input for any non-digit values.
+            const phoneNumber = value.replace(/[^\d]/g, '');
+
+            // phoneNumberLength is used to know when to apply our formatting for the phone number
+            const phoneNumberLength = phoneNumber.length;
+
+            // we need to return the value with no formatting if its less than four digits
+            // this is to avoid weird behavior that occurs if you  format the area code too early
+            if (phoneNumberLength < 4) return phoneNumber;
+
+            // if phoneNumberLength is greater than 4 and less the 7 we start to return
+            // the formatted number
+            if (phoneNumberLength < 7) {
+                return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+            }
+
+            // finally, if the phoneNumberLength is greater then seven, we add the last
+            // bit of formatting and return it.
+            return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+                3,
+                6
+            )}-${phoneNumber.slice(6, 10)}`;
+        }
+        function phoneNumberFormatter() {
+            const inputField = document.getElementById('phone');
+            const formattedInputValue = formatPhoneNumber(inputField.value);
+            inputField.value = formattedInputValue;
+        }
+
+        validateNames();
+        validateEmail();
+        validateAddress();
+        validatePhone();
+        validateMakeAndModel();
+
         const form = document.querySelector("form")
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            let anim = document.getElementById('checkmark-animation');
-            anim.removeAttribute('hidden');
 
-            setTimeout(() => {
-                form.submit();
-            }, 3000);
+            if (!form.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            } else {
+                e.preventDefault();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data:
+                    {
+                        first_name: $("#first_name").val(),
+                        last_name: $("#last_name").val(),
+                        email: $("#email").val(),
+                        phone: $("#phone").val(),
+                        address: $("#places-autocomplete").val(),
+                        make: $("#make").val(),
+                        model: $("#model").val(),
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function () {
+                        let anim = document.getElementById('checkmark-animation');
+                        anim.removeAttribute('hidden');
+
+                        setTimeout(() => {
+                            anim.setAttribute('hidden', 'hidden');
+                            form.reset();
+                        }, 2000);
+                    }
+                });
+            }
         });
 
-        $(".no-spaces").on("input click", function(){
-            var inputValue = $(this).val();
 
-            $(this).val(inputValue.replace(/\s/, ''));
-        })
+        // $(".no-spaces").on("input click", function () {
+        //     var inputValue = $(this).val();
+
+        //     $(this).val(inputValue.replace(/\s/, ''));
+        // })
 
     </script>
 </body>
+
 </html>

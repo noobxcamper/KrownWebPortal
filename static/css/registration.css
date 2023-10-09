@@ -4,14 +4,7 @@ body {
     font-family: 'Work Sans', sans-serif;
 }
 
-input {
-    height: 60px;
-    margin-bottom: 15px;
-    background-color: #FFFFFF;
-    border: 1px #DCE0E5 solid;
-    border-radius: 2px 2px 0px 0px;
-    font-size: 20px;
-    font-family: 'Work Sans', sans-serif;
+.valid-feedback {
 }
 
 button {
@@ -30,22 +23,11 @@ button:active {
     background-color: #00A6FB;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
 .card-stack {
     background-color: #F5F5F5;
     filter: drop-shadow(0px 0px 10px #636363);
     border: 0px;
     border-radius: 10px;
-}
-
-.footer {
-    font-size: 14px;
-    text-align: center;
-    justify-content: center;
 }
 
 .checkmark__circle {
@@ -100,4 +82,9 @@ form {
     100% {
         box-shadow: inset 0px 0px 0px 30px #7ac142;
     }
+}
+
+.floating-label {
+    display: flex;
+    z-index: -1;
 }
