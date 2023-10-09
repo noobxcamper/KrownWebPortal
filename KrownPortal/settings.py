@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!0836bxot*mjaryczea=%h7peon2m3@&3y&#(986wn_%g6*$*p
 GOOGLE_API_KEY = 'AIzaSyDGfmx9_5ofF4EtV8KwcmfvS5kGZHzzrdM'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
