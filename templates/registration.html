@@ -269,6 +269,36 @@
             const formattedInputValue = formatPhoneNumber(inputField.value);
             inputField.value = formattedInputValue;
         }
+        function resetValidations() {
+            fName = document.getElementById("first_name");
+            lName = document.getElementById("last_name");
+            email = document.getElementById("email");
+            addr = document.getElementById("places-autocomplete");
+            phone = document.getElementById("phone");
+            make = document.getElementById("make");
+            model = document.getElementById("model");
+
+            fName.classList.remove("is-valid");
+            fName.classList.remove("is-invalid");
+
+            lName.classList.remove("is-valid");
+            lName.classList.remove("is-invalid");
+
+            email.classList.remove("is-valid");
+            email.classList.remove("is-invalid");
+
+            addr.classList.remove("is-valid");
+            addr.classList.remove("is-invalid");
+
+            phone.classList.remove("is-valid");
+            phone.classList.remove("is-invalid");
+
+            make.classList.remove("is-valid");
+            make.classList.remove("is-invalid");
+
+            model.classList.remove("is-valid");
+            model.classList.remove("is-invalid");
+        }
 
         validateNames();
         validateEmail();
@@ -306,6 +336,7 @@
                         setTimeout(() => {
                             anim.setAttribute('hidden', 'hidden');
                             form.reset();
+                            resetValidations();
                         }, 2000);
                     }
                 });
