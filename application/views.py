@@ -6,9 +6,7 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 
 from application.models import Customer
-from application.forms import RegistrationForm, sign_in_form
 from KrownPortal.settings import GOOGLE_API_KEY
-from . import utilities
 
 # Create your views here.
 
@@ -28,15 +26,15 @@ def dashboard(request):
         print(request.body)
 
         customer = Customer()
-        customer.first_name = request.POST['first_name'].upper()
-        customer.last_name = request.POST['last_name'].upper()
-        customer.email = request.POST['email']
-        customer.phone = request.POST['phone']
-        customer.address = request.POST['address']
-        customer.city = request.POST['city']
-        customer.postal_code = request.POST['postal']
-        customer.make = request.POST['make'].upper()
-        customer.model = request.POST['model'].upper()
+        customer.first_name = request.POST['first_name'].upper().strip()
+        customer.last_name = request.POST['last_name'].upper().strip()
+        customer.email = request.POST['email'].strip()
+        customer.phone = request.POST['phone'].strip()
+        customer.address = request.POST['address'].strip()
+        customer.city = request.POST['city'].strip()
+        customer.postal_code = request.POST['postal'].strip()
+        customer.make = request.POST['make'].upper().strip()
+        customer.model = request.POST['model'].upper().strip()
 
         customer.save()
 

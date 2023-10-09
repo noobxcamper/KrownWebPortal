@@ -206,10 +206,10 @@ function resetValidations() {
 
     addr.classList.remove("is-valid");
     addr.classList.remove("is-invalid");
-    
+
     make.classList.remove("is-valid");
     make.classList.remove("is-invalid");
-    
+
     model.classList.remove("is-valid");
     model.classList.remove("is-invalid");
 
@@ -223,21 +223,8 @@ function resetValidations() {
     model.classList.remove("is-invalid");
 }
 
-validateNames();
-validateEmail();
-validateAddress();
-validatePhone();
-validateMakeAndModel();
-
-const form = document.querySelector("form")
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    if (!form.checkValidity()) {
-        e.stopPropagation();
-        return false;
-    }
-    else if(fNameValid && lNameValid && phoneValid && addressValid && cityValid && postalValid && makeValid && modelValid) {
+function submitForm() {
+    if (fNameValid && lNameValid && phoneValid && addressValid && cityValid && postalValid && makeValid && modelValid) {
         $.ajax({
             type: 'POST',
             url: '/',
@@ -267,8 +254,30 @@ form.addEventListener("submit", (e) => {
                 }, 2000);
             }
         });
-    } 
-    // else {
-    //     alert("Invalid form fields!");
-    // }
+    }
+}
+
+validateNames();
+validateEmail();
+validateAddress();
+validatePhone();
+validateMakeAndModel();
+
+const form = document.querySelector("form")
+form.addEventListener("submit", (e) => {
+    if (e.keyCode == 13) alert("stop!");
+
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+        e.stopPropagation();
+        return false;
+    }
+    else {
+        submitForm();
+    }
+});
+
+$("form").keypress(function (e) {
+    if(e.keyCode == 13) submitForm();
 });
