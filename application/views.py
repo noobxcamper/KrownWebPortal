@@ -70,10 +70,7 @@ def login_page(request):
             print("Wrong password")
             return HttpResponseRedirect(reverse(login_page))
     else:
-        ctx = {
-            "signin_form": sign_in_form()
-        }
-        return render(request, 'login.html', context=ctx)
+        return render(request, 'login.html')
     
 def is_user_active(user):
     return user.is_active
