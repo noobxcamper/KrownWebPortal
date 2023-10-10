@@ -52,6 +52,11 @@ function validateEmail() {
             email.classList.add("is-invalid");
             email.classList.remove("is-valid");
         }
+        
+        if(email.value.length == 0) }
+            email.classList.remove("is-valid");
+            email.classList.remove("is-invalid");
+        }
     });
 }
 function validateAddress() {
