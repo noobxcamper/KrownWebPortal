@@ -44,18 +44,16 @@ function validateEmail() {
     var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     email.addEventListener("input", (e) => {
-        if (emailRegex.test(email.value)) {
+        if(email.value.length == 0) {
+            email.classList.remove("is-valid");
+            email.classList.remove("is-invalid");
+        } else if (emailRegex.test(email.value)) {
             email.value = email.value.trim();
             email.classList.add("is-valid");
             email.classList.remove("is-invalid");
         } else {
             email.classList.add("is-invalid");
             email.classList.remove("is-valid");
-        }
-        
-        if(email.value.length == 0) }
-            email.classList.remove("is-valid");
-            email.classList.remove("is-invalid");
         }
     });
 }
